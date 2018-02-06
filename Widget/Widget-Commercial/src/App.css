@@ -22,6 +22,20 @@
   font-size: large;
 }
 
+.chart .plot {
+  fill: steelblue;
+}
+
+.chart {
+  margin : 35px 45px 35px;
+}
+
+.chart text {
+  fill: white;
+  font: 20px sans-serif;
+  text-anchor: middle;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
