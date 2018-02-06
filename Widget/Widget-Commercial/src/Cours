@@ -1,0 +1,12 @@
+Question 2
+1; 1 unité fonctionnelle
+Paramètres x et y
+Caracteristiques: valeurs
+Catégories: entiers
+Contraintes: y!=0
+Partitions: y => N/{0}, x => N
+Jeux de test: x>0, y=0
+x>0, y>0
+x>0, y<0
+x<0, y>0
+x<0, y<0
