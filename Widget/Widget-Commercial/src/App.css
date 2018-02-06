@@ -27,12 +27,12 @@
 }
 
 .chart {
-  margin : 35px 45px 35px;
+  padding: 70px 0px 40px;
 }
 
 .chart text {
-  fill: white;
-  font: 20px sans-serif;
+  font-weight: bold;
+  font: 16px sans-serif;
   text-anchor: middle;
 }
 

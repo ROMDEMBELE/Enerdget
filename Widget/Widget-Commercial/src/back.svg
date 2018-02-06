@@ -1,11 +1,2 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns="http://www.w3.org/2000/svg"
-  xmlns:xlink="http://www.w3.org/1999/xlink"
-  width="500px"
-  height="400px"
-  version="1.1">
-  <defs/>
-  <g transform="translate(0.5,0.5)">
-    <rect x="2" y="2" width="495" height="395" rx="57" ry="57" fill="#999999" stroke="#ff8000" stroke-width="5" pointer-events="none"/>
-    </g>
-  </svg>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="475px" height="415px" version="1.1" content="&lt;mxfile userAgent=&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36&quot; version=&quot;8.0.6&quot; editor=&quot;www.draw.io&quot; type=&quot;google&quot;&gt;&lt;diagram id=&quot;84389a4f-dfd9-2cf1-24c8-4e36911ded08&quot; name=&quot;Page-1&quot;&gt;1ZVNc4IwEIZ/DUdnIKEFjoWKXnry0HOEBTIG4sQo2l/fAAkfYmd0pu2McACe3WzIvm/AwlF5XgmyLz54CsxCdnq28LuFkGO7SF0actHkNfA7kguaajaADf0CM1TTI03hMEmUnDNJ91OY8KqCRE4YEYLX07SMs+mse5LDDGwSwub0k6ay6KiPvIGvgeaFmVktsItsSbLLBT9Wej4L4aw9unBJTC290ENBUl6PEF5aOBKcy+6uPEfAmuaatnXj4h+i/XsLqORdA4IUO+BlgZMAIjZeaOVOhB3BLKF9UXkxzWmXB00Bx8JhXVAJmz1Jmmit/KBYIUumw4xsgYV9VyLOuGjLmL7g8CAF3/V9flEko4yNMoP2aDivZExKyhpfrYGdQNKE6IB2kbIQDgmjeaUeGGSyn2FUMY59224S5/3SLTyBkHAeId2/FfASpLioFB3FvtsN0WZfOEbcerCOgzUrRrbxjGO1W/O+9qCYutGi3Smg828CvrXn8wuInCsBg7l+rndDP+zbfyAgfkRA+yl3YMUr+K3N511tPvvG5kPuXDz3ce3U4/BlbmOj/x9efgM=&lt;/diagram&gt;&lt;/mxfile&gt;" style="background-color: rgb(255, 255, 255);"><defs/><g transform="translate(0.5,0.5)"><rect x="172" y="2" width="130" height="71" rx="10.65" ry="10.65" fill="#adaaa8" stroke="#ff8000" stroke-width="5" pointer-events="none"/><rect x="2" y="32" width="470" height="380" rx="57" ry="57" fill="#adaaa8" stroke="#ff8000" stroke-width="5" pointer-events="none"/><rect x="175" y="22" width="124" height="40" fill="#adaaa8" stroke="none" pointer-events="none"/></g></svg>
