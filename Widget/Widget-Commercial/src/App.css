@@ -32,7 +32,7 @@
 
 .chart text {
   font-weight: bold;
-  font: 16px sans-serif;
+  font-size : 12px;
   text-anchor: middle;
 }
 

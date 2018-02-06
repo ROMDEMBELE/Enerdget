@@ -10,7 +10,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    var width = 600,
+    var width = 650,
     height = 400,
     green = "#2cd364",
     red = "#ea445f",
@@ -34,14 +34,14 @@ var chart = d3.select(".chart")
   y.domain([0, 100]);
 
 
-  var barWidth = (width-40) / data.length ;
+  var barWidth = (width-100) / data.length ;
 
   var bar = chart.selectAll("g")
       .data(data)
       .enter()
       .append("g")
       .attr("height",height)
-      .attr("transform", function(d, i) { return "translate(" + (i * barWidth + 30)+", 0)"; });
+      .attr("transform", function(d, i) { return "translate(" + (i * barWidth + 60)+", 0)"; });
 
   bar.append("rect")
     .attr("class","empty")
@@ -66,22 +66,22 @@ var chart = d3.select(".chart")
       .attr("y1",height/2)
       .attr("x2",width)
       .attr("y2",height/2)
-      .attr("stroke-width","5");
+      .attr("stroke-width","3");
 
       let i=-100;
       while (i <= 100) {
         chart.append("line")
         .attr("stroke","rgb(255, 120, 48)")
-        .attr("x1",0)
+        .attr("x1",15)
         .attr("stroke-dasharray","5,5")
         .attr("y1",i==0 ? height/2 : i>0 ? y(i) - height/2: height - y(-i) + height/2)
-        .attr("x2",width)
+        .attr("x2",width-15)
         .attr("y2",i==0 ? height/2 : i>0 ? y(i) - height/2 :height - y(-i) + height/2)
         .attr("stroke-width","1");
 
         chart.append("text")
-          .attr("x",20)
-          .attr("y",i==0 ? height/2 : i>0 ? y(i) - height/2 : height - y(-i) + height/2)
+          .attr("x",40)
+          .attr("y",(i==0 ? height/2 : i>0 ? y(i) - height/2 : height - y(-i) + height/2)+10)
           .attr("dy",".25em")
           .attr("fill","rgb(255, 120, 48)")
           .attr("font-weight","bold")
@@ -98,7 +98,7 @@ var chart = d3.select(".chart")
           .attr("x", (barWidth-20) / 2)
           .attr("y", function(d) { return d==0 ? height/2 - 20 : d>0 ? y(d) - 15 - height/2 : height - y(-d) + height/2 + 5 ; })
           .attr("dy", ".75em")
-          .text(function(d) { return Math.abs(d)+" A"; });
+          .text(function(d) { return d != 0 ? Math.abs(d)+" A" : "0A"; });
 
       bar.append("text")
         .attr("x", (barWidth-20) / 2)
@@ -111,17 +111,8 @@ var chart = d3.select(".chart")
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to betterie</h1>
-        </header>
-        <div className="panel panel-default">
-        <div className="panel-body">
-        <div className="backgroundHeader"/>
         <div className="background">
           <svg className="chart" style={{ position : "absolute"}}/>
-        </div>
-        </div>
         </div>
       </div>
     );
