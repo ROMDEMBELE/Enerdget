@@ -12,10 +12,10 @@ class App extends Component {
   componentDidMount() {
     var width = 650,
     height = 400,
-    green = "#2cd364",
+    green = "rgb(47, 191, 59)",
     red = "#ea445f",
     backheight = height+120,
-    data = [-49,24,92,88,31,-26,-9,0,47];
+    data = [63,-100,-61,41,27,-12,0,4,100];
 
 var y = d3.scaleLinear()
     .range([height, height/2]);
@@ -102,7 +102,7 @@ var chart = d3.select(".chart")
 
       bar.append("text")
         .attr("x", (barWidth-20) / 2)
-        .attr("y",height+5)
+        .attr("y",height+20)
         .attr("dy",".75em")
         .attr("fill","#ccc9c7")
         .text((d) => "C°"+(data.indexOf(d)+1));
