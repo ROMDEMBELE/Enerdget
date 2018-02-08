@@ -1,0 +1,11 @@
+.chart {
+  position: relative;
+  display: block;
+  margin :auto;
+}
+
+.back {
+  position: relative;
+  margin: auto;
+  display: block;
+}
