@@ -1,6 +1,91 @@
 /**
  * Created by Ag Ibrahim Mohamed Ali on 07/02/2018.
  */
+self.onInit = function() {
+    self.ctx.$scope.datasources = self.ctx.defaultSubscription
+        .datasources;
+    self.ctx.$scope.data = self.ctx.defaultSubscription
+        .data;
+
+    self.ctx.$scope.datasourceData = [];
+
+    var currentDatasource = null;
+    var currentDatasourceIndex = -1;
+    try {
+        for (var i = 0; i < self.ctx.$scope.data.length; i++) {
+            var dataKeyData = self.ctx.$scope.data[i];
+            if (dataKeyData.datasource !=
+                currentDatasource) {
+                currentDatasource = dataKeyData.datasource
+                currentDatasourceIndex++;
+                self.ctx.$scope.datasourceData[
+                    currentDatasourceIndex] = [];
+            }
+            self.ctx.$scope.datasourceData[
+                currentDatasourceIndex].push(
+                dataKeyData);
+        }
+        createView(self.ctx.width, self.ctx.height - 6);
+        console.log(self.ctx.$scope.datasourceData[
+                0]);
+    } catch (e) {}
+}
+update = function(dataSource) {
+    try {
+        if (dataSource()[0].data[1]) {
+            document.getElementById("BatteryCellsView")
+                .style["border"] = "3px solid green";
+        } else {
+            document.getElementById("BatteryCellsView")
+                .style["border"] = "3px solid red";
+        }
+        var cellData = [];
+        for (let i = 1; i < dataSource().length; i++) {
+            cellData.push(dataSource()[i].data[1]);
+        }
+        return cellData;
+    } catch (e) {
+        console.log(e);
+        return null;
+    }
+}
+self.onDataUpdated = function() {
+    self.ctx.$scope.datasources = self.ctx.defaultSubscription
+        .datasources;
+    self.ctx.$scope.data = self.ctx.defaultSubscription
+        .data;
+
+    self.ctx.$scope.datasourceData = [];
+
+    var currentDatasource = null;
+    var currentDatasourceIndex = -1;
+    try {
+        for (var i = 0; i < self.ctx.$scope.data.length; i++) {
+            var dataKeyData = self.ctx.$scope.data[i];
+            if (dataKeyData.datasource !=
+                currentDatasource) {
+                currentDatasource = dataKeyData.datasource
+                currentDatasourceIndex++;
+                self.ctx.$scope.datasourceData[
+                    currentDatasourceIndex] = [];
+            }
+            self.ctx.$scope.datasourceData[
+                currentDatasourceIndex].push(
+                dataKeyData);
+        }
+        console.log(self.ctx.$scope.datasourceData[0]);
+        var ok=update(() => {return self.ctx.$scope.datasourceData[0];});
+        console.log(ok);
+    } catch (e) {}
+}
+self.onResize = function() {
+    var myNode = document.getElementById(
+        "BatteryCellsView");
+    while (myNode.firstChild) {
+        myNode.removeChild(myNode.firstChild);
+    }
+    createView(self.ctx.width, self.ctx.height - 6);
+}
 createBackground = function(width, height) {
     var g = document.createElementNS(
         "http://www.w3.org/2000/svg", "g");
@@ -112,17 +197,20 @@ createChart = function(width, backheight) {
             .attr("stroke", "rgb(255, 120, 48)")
             .attr("x1", width * 15 / 650)
             .attr("stroke-dasharray", "5,5")
-            .attr("y1", i === 0 ? height / 2 : i > 0 ? y(
+            .attr("y1", i === 0 ? height / 2 : i > 0 ?
+                y(
                     i) - height / 2 : height - y(-i) +
                 height / 2)
             .attr("x2", width - width * 15 / 650)
-            .attr("y2", i === 0 ? height / 2 : i > 0 ? y(
+            .attr("y2", i === 0 ? height / 2 : i > 0 ?
+                y(
                     i) - height / 2 : height - y(-i) +
                 height / 2)
             .attr("stroke-width", backheight * 1 / 520);
         chart.append("text")
             .attr("x", width * 40 / 650)
-            .attr("y", (i === 0 ? height / 2 : i > 0 ? y(
+            .attr("y", (i === 0 ? height / 2 : i > 0 ?
+                y(
                     i) - height / 2 : height - y(-i) +
                 height / 2) + backheight * 10 / 520)
             .attr("dy", ".25em")
@@ -137,7 +225,8 @@ createChart = function(width, backheight) {
         .attr("fill", "white")
         .attr("x", (barWidth - width * 20 / 650) / 2)
         .attr("y", function(d) {
-            return d === 0 ? height / 2 - backheight *
+            return d === 0 ? height / 2 -
+                backheight *
                 20 / 520 : d > 0 ?
                 y(d) + backheight * 4 / 520 -
                 height / 2 : height - y(-
@@ -161,29 +250,17 @@ createChart = function(width, backheight) {
     return container;
 }
 createView = function(backwidth, height) {
-    var width = backwidth*450/650;
+    var width = backwidth * 450 / 650;
     var svg = document.createElementNS(
         "http://www.w3.org/2000/svg", "svg");
     svg.setAttributeNS(null, "width", width);
     svg.setAttributeNS(null, "height", height);
     svg.setAttributeNS(null, "style",
-        "background-color: rgb(255, 255, 255);display: block;margin: auto");
+        "background-color: rgb(255, 255, 255);display: block;margin: auto"
+    );
     var g = createBackground(width, height);
     svg.append(g);
     g.append(createChart(width, height));
     document.getElementById("BatteryCellsView").append(
         svg);
 }
-self.onInit = function() {
-    createView(self.ctx.width, self.ctx.height);
-}
-self.onDataUpdated = function() {}
-self.onResize = function() {
-    var myNode = document.getElementById(
-        "BatteryCellsView");
-    while (myNode.firstChild) {
-        myNode.removeChild(myNode.firstChild);
-    }
-    createView(self.ctx.width, self.ctx.height);
-}
-self.onDestroy = function() {}
