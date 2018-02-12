@@ -247,7 +247,6 @@ updateChart = function() {
         .domain([min, max])
         .nice();
     var chart = d3.select("#chart");
-    var yAxis = d3.axisLeft(y);
     var barWidth = (width - width * 100 / 650) / self.ctx
         .$scope.datasourceData[0].length;
     chart.selectAll('.cell')
