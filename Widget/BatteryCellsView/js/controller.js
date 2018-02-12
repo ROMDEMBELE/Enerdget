@@ -1,9 +1,6 @@
 /**
  * Created by Ag Ibrahim Mohamed Ali on 07/02/2018.
  */
-/**
- * Created by Ag Ibrahim Mohamed Ali on 07/02/2018.
- */
 self.onInit = function() {
     self.ctx.$scope.datasources = self.ctx.defaultSubscription
         .datasources;
@@ -34,6 +31,7 @@ self.onInit = function() {
         }
     }
     createView();
+    createChart();
 }
 self.onDataUpdated = function() {
     self.ctx.$scope.datasources = self.ctx.defaultSubscription
@@ -66,7 +64,7 @@ self.onDataUpdated = function() {
     }
     console.log("Data: ", self.ctx.$scope.datasourceData[
         0]);
-    createChart();
+    updateChart();
 }
 self.onResize = function() {
     console.log("Data: ", self.ctx.$scope.datasourceData[
@@ -95,7 +93,7 @@ createBackground = function(width, height) {
     rect1.setAttributeNS(null, "ry", height * 10.65 /
         415);
     rect1.setAttributeNS(null, "fill", "#ED7F10");
-    rect1.setAttributeNS(null, "stroke", "black");
+    rect1.setAttributeNS(null, "stroke", "#FF4A0C");
     rect1.setAttributeNS(null, "stroke-width", height *
         5 / 415);
     rect1.setAttributeNS(null, "pointer-events", "none");
@@ -109,10 +107,10 @@ createBackground = function(width, height) {
         415);
     rect2.setAttributeNS(null, "rx", width * 57 / 475);
     rect2.setAttributeNS(null, "ry", height * 57 / 415);
-    rect2.setAttributeNS(null, "fill", "#ED7F10");
-    rect2.setAttributeNS(null, "stroke", "#ED7F10");
+    rect2.setAttributeNS(null, "fill", "#F4A22F");
+    rect2.setAttributeNS(null, "stroke", "#FF4A0C");
     rect2.setAttributeNS(null, "stroke-width", height *
-        5 / 415);
+        4 / 415);
     rect2.setAttributeNS(null, "pointer-events", "none");
     var rect3 = document.createElementNS(
         "http://www.w3.org/2000/svg", "rect");
@@ -122,7 +120,7 @@ createBackground = function(width, height) {
         475);
     rect3.setAttributeNS(null, "height", height * 40 /
         415);
-    rect3.setAttributeNS(null, "fill", "#ED7F10");
+    rect3.setAttributeNS(null, "fill", "#F4A22F");
     rect3.setAttributeNS(null, "stroke", "none");
     rect3.setAttributeNS(null, "pointer-events", "none");
     g.append(rect1);
@@ -136,12 +134,22 @@ createChart = function() {
     var height = backheight - backheight * 120 / 520,
         green = "#7FDD4C",
         red = "#BB0B0B";
+    var max = d3.max(self.ctx.$scope.datasourceData[0],
+        function(d) {
+            return d;
+        });
+    var min = d3.min(self.ctx.$scope.datasourceData[0],
+        function(d) {
+            return d;
+        });
+    var mean = d3.mean(self.ctx.$scope.datasourceData[0],
+        function(d) {
+            return d;
+        });
     var y = d3.scaleLinear()
-        .range([height, height / 2]);
-    // y.domain([0, d3.max(self.ctx.$scope.datasourceData[0], function(d) {
-    //     return d;
-    // })]);
-    y.domain([0, 2]);
+        .range([height, height * 55 / 110])
+        .domain([min, max])
+        .nice();
     var chart = d3.select("#chart")
         .attr("y", backheight * 70 / 520)
         .attr("width", width)
@@ -179,46 +187,18 @@ createChart = function() {
         .attr("rx", width * 4 / 650)
         .attr("ry", backheight * 4 / 520);
     chart.append("line")
+        .attr("id", "middleLine")
         .attr("stroke", "black")
         .attr("x1", 0)
         .attr("y1", height / 2)
         .attr("x2", width)
         .attr("y2", height / 2)
         .attr("stroke-width", backheight * 3 / 520);
-    let i = -2;
-    while (i <= 2) {
-        if(i!==0){
-          chart.append("line")
-            .attr("stroke", "white")
-            .attr("x1", width * 15 / 650)
-            .attr("y1", i === 0 ? height / 2 : i > 0 ?
-                y(
-                    i) - height / 2 : height - y(-i) +
-                height / 2)
-            .attr("x2", width - width * 15 / 650)
-            .attr("y2", i === 0 ? height / 2 : i > 0 ?
-                y(
-                    i) - height / 2 : height - y(-i) +
-                height / 2)
-            .attr("stroke-width", backheight * 1 / 520);
-        }
-        chart.append("text")
-            .attr("x", width * 30 / 650)
-            .attr("y", (i === 0 ? height / 2  : i > 0 ?
-                y(
-                    i) - height / 2 : height - y(-i) +
-                height / 2) + backheight * 10 / 520)
-            .attr("dy", ".25em")
-            .attr("fill", "white")
-            .attr("font-weight", "bolder")
-            .attr("font-size", width * 14 / 650)
-            .text(Math.abs(i) + "A");
-        i = i + 0.25; 
-    }
     bar.append("text")
         .attr("class", "cellValue")
         .attr("font-weight", "bolder")
-        .attr("fill", (d) => d===0 ? "black" : "white")
+        .attr("fill", (d) => d === 0 ? "black" :
+            "white")
         .attr("x", (barWidth - width * 20 / 650) / 2)
         .attr("y", function(d) {
             return d === 0 ? height / 2 -
@@ -227,11 +207,11 @@ createChart = function() {
                 y(d) + backheight * 4 / 520 -
                 height / 2 : height - y(-
                     d) + height / 2 - backheight *
-                15 /
+                17 /
                 520;
         })
         .attr("dy", ".75em")
-        .attr("font-size", width * 14 / 650)
+        .attr("font-size", width * 16 / 650)
         .text(function(d) {
             return d !== 0 ? Math.abs(d) + " A" :
                 "0 A";
@@ -240,22 +220,47 @@ createChart = function() {
         .attr("x", (barWidth - width * 20 / 650) / 2)
         .attr("y", height + backheight * 20 / 520)
         .attr("dy", ".75em")
-        .attr("fill", "white")
-        .attr("font-size", width * 12 / 650)
+        .attr("fill", "black")
+        .attr("font-size", width * 16 / 650)
         .text((d, i) => "C°" + (i + 1));
-
+}
+updateChart = function() {
+    var width = self.ctx.width * 450 / 650;
+    var backheight = self.ctx.height - 6;
+    var height = backheight - backheight * 120 / 520,
+        green = "#7FDD4C",
+        red = "#BB0B0B";
+    var max = d3.max(self.ctx.$scope.datasourceData[0],
+        function(d) {
+            return d;
+        });
+    var min = d3.min(self.ctx.$scope.datasourceData[0],
+        function(d) {
+            return d;
+        });
+    var mean = d3.mean(self.ctx.$scope.datasourceData[0],
+        function(d) {
+            return d;
+        });
+    var y = d3.scaleLinear()
+        .range([height, height * 55 / 110])
+        .domain([min, max])
+        .nice();
+    var chart = d3.select("#chart");
+    var yAxis = d3.axisLeft(y);
+    var barWidth = (width - width * 100 / 650) / self.ctx
+        .$scope.datasourceData[0].length;
     chart.selectAll('.cell')
         .data(self.ctx.$scope.datasourceData[
             0])
         .exit()
         .transition()
-            .duration(900)
+        .duration(900)
         .remove();
-
     chart.selectAll('.cell')
         .data(self.ctx.$scope.datasourceData[0])
         .transition()
-            .duration(900)
+        .duration(900)
         .attr("fill", (d) => d >= 0 ? green : red)
         .attr("y", function(d) {
             return d > 0 ? y(Math.abs(d)) - height /
@@ -269,8 +274,9 @@ createChart = function() {
     chart.selectAll('.cellValue')
         .data(self.ctx.$scope.datasourceData[0])
         .transition()
-            .duration(900)
-        .attr("fill", (d) => d===0 ? "black" : "white")
+        .duration(900)
+        .attr("fill", (d) => d === 0 ? "black" :
+            "white")
         .attr("x", (barWidth - width * 20 / 650) / 2)
         .attr("y", function(d) {
             return d === 0 ? height / 2 -
@@ -279,12 +285,12 @@ createChart = function() {
                 y(d) + backheight * 4 / 520 -
                 height / 2 : height - y(-
                     d) + height / 2 - backheight *
-                15 /
+                17 /
                 520;
         })
         .text(function(d) {
-            return d !== 0 ? Math.abs(d) + " A" :
-                "0 A";
+            return d !== 0 ? Math.abs(d) + " V" :
+                "0 V";
         });
 }
 createView = function() {
