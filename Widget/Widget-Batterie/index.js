@@ -5,8 +5,8 @@ self.onInit = function() {
 }
 
 self.onDataUpdated = function() {
-    updateData();
-    updateLevel();
+    // updateData();
+    // updateLevel();
 }
 
 self.onResize = function() {
@@ -23,6 +23,10 @@ self.onDestroy = function() {}
 createBackground = function(width, height) {
     var w = 304,
         h = 464;
+    var controller = document.getElementById("controllerSVG")
+    controller.setAttribute("transform", "scale("+(width/665)+")");
+    // controller.setAttributeNS(null,"height",)
+
     var g = document.createElementNS(
         "http://www.w3.org/2000/svg", "g");
     // <rect x="22" y="68" width="260" height="57" rx="13.11" ry="13.11" fill="#cccccc" stroke="none" pointer-events="none"/>
@@ -123,6 +127,24 @@ createBackground = function(width, height) {
     rect7.setAttributeNS(null, "height", height * 21 /
         h);
     rect7.setAttributeNS(null, "fill", "#bb0b0b");
+    //xlink:href="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/add-128.png" preserveAspectRatio="none" pointer-events="none"/>
+    var imgP = document.createElementNS("http://www.w3.org/2000/svg","image");
+    // imgP.setAttributeNS(null, "x", width * 2 / w);
+    // imgP.setAttributeNS(null, "y", height * 48 / h););
+    imgP.setAttributeNS(null,"href","https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/add-128.png");
+    imgP.setAttributeNS(null, "x", width * 68 / w);
+    imgP.setAttributeNS(null, "y", width * 28 / h);
+    imgP.setAttributeNS(null, "width", width * 30 / w);
+    imgP.setAttributeNS(null, "height", height * 30 / h);
+
+    var imgM = document.createElementNS("http://www.w3.org/2000/svg","image");
+    imgM.setAttributeNS(null,"href","https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-minus-round-128.png")
+    imgM.setAttributeNS(null, "x", width * 208 / w);
+    imgM.setAttributeNS(null, "y", height * 25 / h);
+    imgM.setAttributeNS(null, "width", width * 30 /w);
+    imgM.setAttributeNS(null, "height", height * 30 /h);
+
+
     g.append(rect1);
     g.append(rect2);
     g.append(rect3);
@@ -130,6 +152,8 @@ createBackground = function(width, height) {
     g.append(rect5);
     g.append(rect6);
     g.append(rect7);
+    g.append(imgM);
+    g.append(imgP);
     return g;
 }
 createLevel = function() {
