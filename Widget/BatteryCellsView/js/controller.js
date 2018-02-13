@@ -136,19 +136,20 @@ createChart = function() {
         red = "#BB0B0B";
     var max = d3.max(self.ctx.$scope.datasourceData[0],
         function(d) {
-            return d;
+            return Math.abs(d);
         });
     var min = d3.min(self.ctx.$scope.datasourceData[0],
         function(d) {
-            return d;
+            return Math.abs(d);
         });
+    var absMax=max>min? max : min;
     var mean = d3.mean(self.ctx.$scope.datasourceData[0],
         function(d) {
             return d;
         });
     var y = d3.scaleLinear()
-        .range([height, height * 55 / 110])
-        .domain([min, max])
+        .range([height,0])
+        .domain([-absMax, absMax])
         .nice();
     var chart = d3.select("#chart")
         .attr("y", backheight * 70 / 520)
@@ -176,11 +177,10 @@ createChart = function() {
         .attr("class", "cell")
         .attr("fill", (d) => d >= 0 ? green : red)
         .attr("y", function(d) {
-            return d > 0 ? y(Math.abs(d)) - height /
-                2 : height / 2;
+            return d > 0 ? y(Math.abs(d)): height / 2;
         })
         .attr("height", function(d) {
-            return d === 0 ? 0 : height - y(Math.abs(
+            return d === 0 ? 0 : y(absMax-Math.abs(
                 d));
         })
         .attr("width", barWidth - width * 20 / 650)
@@ -204,9 +204,8 @@ createChart = function() {
             return d === 0 ? height / 2 -
                 backheight *
                 20 / 520 : d > 0 ?
-                y(d) + backheight * 4 / 520 -
-                height / 2 : height - y(-
-                    d) + height / 2 - backheight *
+                y(Math.abs(d)) + backheight * 4 / 520 : y(absMax-Math.abs(
+                d)) + height / 2 - backheight *
                 17 /
                 520;
         })
@@ -232,21 +231,22 @@ updateChart = function() {
         red = "#BB0B0B";
     var max = d3.max(self.ctx.$scope.datasourceData[0],
         function(d) {
-            return d;
+            return Math.abs(d);
         });
     var min = d3.min(self.ctx.$scope.datasourceData[0],
         function(d) {
-            return d;
+            return Math.abs(d);
         });
+    var absMax=max>min? max : min;
     var mean = d3.mean(self.ctx.$scope.datasourceData[0],
         function(d) {
             return d;
         });
     var y = d3.scaleLinear()
-        .range([height, height * 55 / 110])
-        .domain([min, max])
-        .nice();
+        .range([height/2,0])
+        .domain([0, absMax]);
     var chart = d3.select("#chart");
+    var yAxis = d3.axisLeft(y);
     var barWidth = (width - width * 100 / 650) / self.ctx
         .$scope.datasourceData[0].length;
     chart.selectAll('.cell')
@@ -262,13 +262,12 @@ updateChart = function() {
         .duration(900)
         .attr("fill", (d) => d >= 0 ? green : red)
         .attr("y", function(d) {
-            return d > 0 ? y(Math.abs(d)) - height /
-                2 : height / 2;
+            return d > 0 ? y(Math.abs(d)): height / 2;
         })
         .attr("height", function(d) {
-            return d === 0 ? 0 : height - y(Math.abs(
+            return d === 0 ? 0 : y(absMax-Math.abs(
                 d));
-        })
+        });
 
     chart.selectAll('.cellValue')
         .data(self.ctx.$scope.datasourceData[0])
@@ -281,9 +280,8 @@ updateChart = function() {
             return d === 0 ? height / 2 -
                 backheight *
                 20 / 520 : d > 0 ?
-                y(d) + backheight * 4 / 520 -
-                height / 2 : height - y(-
-                    d) + height / 2 - backheight *
+                y(Math.abs(d)) + backheight * 4 / 520 : y(absMax-Math.abs(
+                d)) + height / 2 - backheight *
                 17 /
                 520;
         })
