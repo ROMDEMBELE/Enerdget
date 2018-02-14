@@ -95,7 +95,7 @@ createBackground = function(width, height) {
     rect1.setAttributeNS(null, "fill", "#ED7F10");
     rect1.setAttributeNS(null, "stroke", "#FF4A0C");
     rect1.setAttributeNS(null, "stroke-width", height *
-        5 / 415);
+        6 / 415);
     rect1.setAttributeNS(null, "pointer-events", "none");
     var rect2 = document.createElementNS(
         "http://www.w3.org/2000/svg", "rect");
@@ -105,12 +105,12 @@ createBackground = function(width, height) {
         475);
     rect2.setAttributeNS(null, "height", height * 380 /
         415);
-    rect2.setAttributeNS(null, "rx", width * 57 / 475);
-    rect2.setAttributeNS(null, "ry", height * 57 / 415);
+    rect2.setAttributeNS(null, "rx", width * 17 / 475);
+    rect2.setAttributeNS(null, "ry", height * 17 / 415);
     rect2.setAttributeNS(null, "fill", "#F4A22F");
     rect2.setAttributeNS(null, "stroke", "#FF4A0C");
     rect2.setAttributeNS(null, "stroke-width", height *
-        4 / 415);
+        6 / 415);
     rect2.setAttributeNS(null, "pointer-events", "none");
     var rect3 = document.createElementNS(
         "http://www.w3.org/2000/svg", "rect");
@@ -133,7 +133,7 @@ createChart = function() {
     var backheight = self.ctx.height - 6;
     var height = backheight - backheight * 120 / 520,
         green = "#7FDD4C",
-        red = "#BB0B0B";
+        red = "#f45042";
     var max = d3.max(self.ctx.$scope.datasourceData[0],
         function(d) {
             return Math.abs(d);
@@ -170,7 +170,8 @@ createChart = function() {
         .attr("y", 0)
         .attr("rx", width * 4 / 650)
         .attr("ry", backheight * 4 / 520)
-        .attr("fill", "#fff2dd")
+        // .attr("fill", "#fff2dd")
+        .attr("fill","rgb(67, 69, 73)")
         .attr("height", height)
         .attr("width", barWidth - width * 20 / 650);
     bar.append("rect")
@@ -188,17 +189,18 @@ createChart = function() {
         .attr("ry", backheight * 4 / 520);
     chart.append("line")
         .attr("id", "middleLine")
-        .attr("stroke", "black")
+        .attr("stroke", "rgba(67, 69, 73,0.5)")
+        // .attr("stroke","rgba(255,255,255,0.5)")
         .attr("x1", 0)
         .attr("y1", height / 2)
         .attr("x2", width)
         .attr("y2", height / 2)
-        .attr("stroke-width", backheight * 3 / 520);
+        .attr("stroke-width", backheight * 5 / 520)
+        // .attr("stroke-dasharray",5.5);
     bar.append("text")
         .attr("class", "cellValue")
         .attr("font-weight", "bolder")
-        .attr("fill", (d) => d === 0 ? "black" :
-            "white")
+        .attr("fill","white")
         .attr("x", (barWidth - width * 20 / 650) / 2)
         .attr("y", function(d) {
             return d === 0 ? height / 2 -
@@ -212,23 +214,24 @@ createChart = function() {
         .attr("dy", ".75em")
         .attr("font-size", width * 16 / 650)
         .text(function(d) {
-            return d !== 0 ? Math.abs(d) + " A" :
+            return d !== 0 ? d + " A" :
                 "0 A";
         });
     bar.append("text")
         .attr("x", (barWidth - width * 20 / 650) / 2)
         .attr("y", height + backheight * 20 / 520)
-        .attr("dy", ".75em")
+        .attr("dy", ".85em")
+        .attr("font-weight","bold")
         .attr("fill", "black")
         .attr("font-size", width * 16 / 650)
-        .text((d, i) => "C°" + (i + 1));
+        .text((d, i) => "Cel°" + (i + 1));
 }
 updateChart = function() {
     var width = self.ctx.width * 450 / 650;
     var backheight = self.ctx.height - 6;
     var height = backheight - backheight * 120 / 520,
         green = "#7FDD4C",
-        red = "#BB0B0B";
+        red = "#f45042";
     var max = d3.max(self.ctx.$scope.datasourceData[0],
         function(d) {
             return Math.abs(d);
@@ -273,8 +276,7 @@ updateChart = function() {
         .data(self.ctx.$scope.datasourceData[0])
         .transition()
         .duration(900)
-        .attr("fill", (d) => d === 0 ? "black" :
-            "white")
+        .attr("fill","white")
         .attr("x", (barWidth - width * 20 / 650) / 2)
         .attr("y", function(d) {
             return d === 0 ? height / 2 -
@@ -286,7 +288,7 @@ updateChart = function() {
                 520;
         })
         .text(function(d) {
-            return d !== 0 ? Math.abs(d) + " V" :
+            return d !== 0 ? d + " V" :
                 "0 V";
         });
 }
