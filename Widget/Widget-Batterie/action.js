@@ -1,7 +1,9 @@
 self.onInit = function() {
-    self.ctx.$scope.setLockedTo = function(state) {
+    self.ctx.$scope.setLockedTo = function(isLocked) {
+        console.log("setLockedTo" + isLocked);
         const url = 'http://localhost:4200/bms/config';
-        const data = '{"locked": '+state+'}';
+        var data = '{"locked":'+isLocked+'}';
+        //console.log("data : " + data);
         $.ajax({
             type: "POST",
             url: url,
@@ -18,10 +20,14 @@ self.onInit = function() {
     
     self.ctx.$scope.setCharge = function(isCharge) {
         var data = {};
+        console.log("isCharge" + isCharge);
         const url = 'http://localhost:4200/bms/config';
         if (isCharge) {
+            // TODO get pour savoir si la batterie n'est pas déja à ca
+            // charge maximal ?
             data = '{"force_chrg": true, "force_disch": false}';
         } else {
+            // TODO get pour savoir si la batterie n'est pas vide ?
             data = '{"force_disch": true, "force_chrg": false}';
         }
         $.ajax({
