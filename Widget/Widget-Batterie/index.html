@@ -1,33 +1,70 @@
-<svg id="controllerSVG" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="665px" height="120px" version="1.1">
-  <defs/>
-  <g transform="translate(0.5,0.5)">
-    <path d="M 459.5 36 L 459.5 50 L 409 50 L 409 112.5 L 395 112.5 L 395 50 Q 395 36 409 36 Z" fill="#f4a22f" stroke="#f45a2f" stroke-width="5" stroke-linejoin="round" stroke-miterlimit="10" pointer-events="none"/>
-    <path d="M 204.5 50 L 204.5 36 L 255 36 Q 269 36 269 50 L 269 117.5 L 255 117.5 L 255 50 Z" fill="#f4a22f" stroke="#f45a2f" stroke-width="5" stroke-linejoin="round" stroke-miterlimit="10" pointer-events="none"/>
-    <g transform="translate(297.5,22.5)">
-      <switch>
-        <foreignObject style="overflow:visible;" pointer-events="all" width="69" height="20" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 19px; font-family: Verdana; color: rgb(244, 90, 47); line-height: 1.2; vertical-align: top; width: 70px; white-space: nowrap; word-wrap: normal; font-weight: bold; text-align: center;">
-          <div class="voltage" xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">20.4 V</div></div>
-        </foreignObject>
-        <text class="voltage" x="35" y="20" fill="#F45A2F" text-anchor="middle" font-size="19px" font-family="Verdana" font-weight="bold">20.4 V</text>
-      </switch>
-    </g>
-    <path d="M 74.5 50 L 74.5 36 L 149.5 36 L 149.5 50 Z" fill="#f4a22f" stroke="#f45a2f" stroke-width="5" stroke-linejoin="round" stroke-miterlimit="10" pointer-events="none"/><path d="M 514.5 50 L 514.5 36 L 589.5 36 L 589.5 50 Z" fill="#f4a22f" stroke="#f45a2f" stroke-width="5" stroke-linejoin="round" stroke-miterlimit="10" pointer-events="none"/>
-    <path d="M 155 43 L 212 43" fill="none" stroke="#f45a2f" stroke-width="9" stroke-miterlimit="10" pointer-events="none"/>
-    <ellipse cx="152" cy="43" rx="3" ry="3" fill="#f45a2f" stroke="#f45a2f" stroke-width="9" pointer-events="none"/>
-    <path d="M 465 43 L 512 43" fill="none" stroke="#f45a2f" stroke-width="9" stroke-miterlimit="10" pointer-events="none"/>
-    <ellipse cx="462" cy="43" rx="3" ry="3" fill="#f45a2f" stroke="#f45a2f" stroke-width="9" pointer-events="none"/>
-    <ellipse cx="43" cy="43" rx="40" ry="40" fill="#f4a22f" stroke="#f45a2f" stroke-width="6" pointer-events="none"/>
-    <ellipse cx="622" cy="43" rx="40" ry="40" fill="#f4a22f" stroke="#f45a2f" stroke-width="6" pointer-events="none"/>
-    <g transform="translate(297.5,54.5)">
-      <switch>
-        <foreignObject style="overflow:visible;" pointer-events="all" width="69" height="20" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-          <div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 19px; font-family: Verdana; color: rgb(244, 90, 47); line-height: 1.2; vertical-align: top; width: 70px; white-space: nowrap; word-wrap: normal; font-weight: bold; text-align: center;">
-            <div class="current" xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">20.4 A</div>
-          </div>
-        </foreignObject>
-        <text class="current" x="35" y="20" fill="#F45A2F" text-anchor="middle" font-size="19px" font-family="Verdana" font-weight="bold">20.4 A</text>
-    </switch>
-  </g>
-</g>
-</svg>
 <div id="BatteryStateControl"></div>
+<svg id="backgroundSVG" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 665 488" width="100%" height="100%" preserveAspectRatio="meet">
+    <defs/>
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="locker" x="40" y="240" width="100px" height="100px" viewBox="0 0 47 47" style="enable-background:new 0 0 47 47;" xml:space="preserve" pointer-events="all">
+	<g>
+	    <circle cx="23.5" cy="23.5" r="23.5" fill="white"/>
+		<path d="M23.5,0C10.542,0,0,10.541,0,23.5S10.542,47,23.5,47S47,36.459,47,23.5S36.458,0,23.5,0z M23.5,42.299    c-10.366,0-18.8-8.433-18.8-18.799S13.134,4.701,23.5,4.701S42.3,13.134,42.3,23.5S33.866,42.299,23.5,42.299z" fill="green"/>
+		<path d="M30.242,15.779c0-3.721-3.025-6.747-6.745-6.747c-3.718,0-6.742,3.026-6.742,6.747v4.857H13.63V37.97h19.74V20.637h-3.128    V15.779z M26.868,20.637h-6.736V15.78c0-1.863,1.511-3.372,3.366-3.372c1.857,0,3.371,1.509,3.371,3.372L26.868,20.637    L26.868,20.637z" fill="green"/>
+	</g>
+</svg>
+    <g transform="translate(0.5,0.5)">
+        <path d="M 458.07 35.71 L 458.07 49.71 L 407.57 49.71 L 407.57 113.07 L 393.57 113.07 L 393.57 49.71 Q 393.57 35.71 407.57 35.71 Z" fill="#f4a22f" stroke="#f45a2f" stroke-width="5" stroke-linejoin="round" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 203.07 49.71 L 203.07 35.71 L 253.57 35.71 Q 267.57 35.71 267.57 49.71 L 267.57 117.36 L 253.57 117.36 L 253.57 49.71 Z" fill="#f4a22f" stroke="#f45a2f" stroke-width="5" stroke-linejoin="round" stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(296.5,22.5)">
+            <switch>
+                <foreignObject style="overflow:visible;" pointer-events="all" width="69" height="20" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 19px; font-family: Verdana; color: rgb(244, 90, 47); line-height: 1.2; vertical-align: top; width: 70px; white-space: nowrap; word-wrap: normal; font-weight: bold; text-align: center;">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">20.4 V</div>
+                    </div>
+                </foreignObject>
+                <text x="35" y="20" fill="#F45A2F" text-anchor="middle" font-size="19px" font-family="Verdana" font-weight="bold">20.4 V</text>
+            </switch>
+        </g>
+        <path d="M 73.5 50 L 73.5 36 L 148.5 36 L 148.5 50 Z" fill="#f4a22f" stroke="#f45a2f" stroke-width="5" stroke-linejoin="round" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 513.5 50 L 513.5 36 L 588.5 36 L 588.5 50 Z" fill="#f4a22f" stroke="#f45a2f" stroke-width="5" stroke-linejoin="round" stroke-miterlimit="10" pointer-events="none"/>
+        <path id="switchCharge" d="M 154 43 L 211 43" fill="none" stroke="#f45a2f" stroke-width="9" stroke-miterlimit="10" pointer-events="none"/>
+        <ellipse cx="151" cy="43" rx="3" ry="3" fill="#f45a2f" stroke="#f45a2f" stroke-width="9" pointer-events="none"/>
+        <path id="switchDischarge" d="M 464 43 L 511 43" fill="none" stroke="#f45a2f" stroke-width="9" stroke-miterlimit="10" pointer-events="none"/>
+        <ellipse cx="461" cy="43" rx="3" ry="3" fill="#f45a2f" stroke="#f45a2f" stroke-width="9" pointer-events="none"/>
+        <ellipse id="switcherCharge" cx="42" cy="43" rx="40" ry="40" fill="#f4a22f" stroke="#f45a2f" stroke-width="6" pointer-events="visiblePainted"/>
+        <ellipse id="switcherDischarge" cx="621" cy="43" rx="40" ry="40" fill="#f4a22f" stroke="#f45a2f" stroke-width="6" pointer-events="visiblePainted"/>
+        <g transform="translate(296.5,54.5)">
+            <switch>
+                <foreignObject style="overflow:visible;" pointer-events="all" width="69" height="20" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 19px; font-family: Verdana; color: rgb(244, 90, 47); line-height: 1.2; vertical-align: top; width: 70px; white-space: nowrap; word-wrap: normal; font-weight: bold; text-align: center;">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">20.4 A</div>
+                    </div>
+                </foreignObject>
+                <text x="35" y="20" fill="#F45A2F" text-anchor="middle" font-size="19px" font-family="Verdana" font-weight="bold">20.4 A</text>
+            </switch>
+        </g>
+        <rect x="221" y="93" width="80" height="60" rx="9" ry="9" fill="#bb0b0b" stroke="#f45a2f" stroke-width="4" pointer-events="none"/>
+        <rect x="361" y="93" width="80" height="60" rx="9" ry="9" fill="#bb0b0b" stroke="#f45a2f" stroke-width="4" pointer-events="none"/>
+        <rect x="181" y="126" width="300" height="360" rx="27" ry="27" fill="#bb0b0b" stroke="#f45a2f" stroke-width="4" pointer-events="none"/>
+        <rect x="223" y="119" width="76" height="21" fill="#bb0b0b" stroke="none" pointer-events="none"/>
+        <rect x="363" y="115" width="76" height="21" fill="#bb0b0b" stroke="none" pointer-events="none"/>
+        <g transform="translate(247.5,93.5)">
+            <switch>
+                <foreignObject style="overflow:visible;" pointer-events="all" width="26" height="32" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 29px; font-family: Verdana; color: rgb(244, 90, 47); line-height: 1.2; vertical-align: top; width: 27px; white-space: nowrap; word-wrap: normal; font-weight: bold; text-align: center;">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">+</div>
+                    </div>
+                </foreignObject>
+                <text x="13" y="31" fill="#F45A2F" text-anchor="middle" font-size="29px" font-family="Verdana" font-weight="bold">+</text>
+            </switch>
+        </g>
+        <g transform="translate(389.5,76.5)">
+            <switch>
+                <foreignObject style="overflow:visible;" pointer-events="all" width="22" height="35" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 31px; font-family: Verdana; color: rgb(244, 90, 47); line-height: 1.2; vertical-align: top; width: 23px; white-space: nowrap; word-wrap: normal; font-weight: bold; text-align: center;">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">_</div>
+                    </div>
+                </foreignObject>
+                <text x="11" y="33" fill="#F45A2F" text-anchor="middle" font-size="31px" font-family="Verdana" font-weight="bold">_</text>
+            </switch>
+        </g>
+        <rect x="190" y="137" width="279" height="339" rx="5" ry="5" fill="#e0e0e0" stroke="none" pointer-events="none"/>
+    </g>
+    <svg id="chart" x="190.5" y="137.5" viewBox="190 137 279 339" width="279" height="339" preserveAspectRatio="meet"></svg>
+</svg>
