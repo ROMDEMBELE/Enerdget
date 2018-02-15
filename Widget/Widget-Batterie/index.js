@@ -1,14 +1,15 @@
+self.switchCharge = true;
+self.switchDischarge = true;
+self.locked = false;
 self.onInit = function() {
     updateData();
     createView();
     createLevel();
 }
-
 self.onDataUpdated = function() {
-    // updateData();
-    // updateLevel();
+    updateData();
+    updateLevel();
 }
-
 self.onResize = function() {
     var myNode = document.getElementById(
         "BatteryStateControl");
@@ -18,154 +19,16 @@ self.onResize = function() {
     createView();
     createLevel();
 }
-
 self.onDestroy = function() {}
-createBackground = function(width, height) {
-    var w = 304,
-        h = 464;
-    var controller = document.getElementById("controllerSVG")
-    controller.setAttribute("transform", "scale("+(width/665)+")");
-    // controller.setAttributeNS(null,"height",)
-
-    var g = document.createElementNS(
-        "http://www.w3.org/2000/svg", "g");
-    // <rect x="22" y="68" width="260" height="57" rx="13.11" ry="13.11" fill="#cccccc" stroke="none" pointer-events="none"/>
-    var rect1 = document.createElementNS(
-        "http://www.w3.org/2000/svg", "rect");
-    rect1.setAttributeNS(null, "x", width *
-        22 / w);
-    rect1.setAttributeNS(null, "y", height *
-        68 / h);
-    rect1.setAttributeNS(null, "width",
-        width * 260 / w);
-    rect1.setAttributeNS(null, "height",
-        height * 57 / h);
-    rect1.setAttributeNS(null, "rx", width * 13.11 / w);
-    rect1.setAttributeNS(null, "ry", height * 13.11 / h);
-    rect1.setAttributeNS(null, "fill", "#cccccc");
-
-    //<rect x="22" y="128" width="260" height="57" rx="13.11" ry="13.11" fill="#cccccc" stroke="none" pointer-events="none"/>
-    var rect2 = document.createElementNS(
-        "http://www.w3.org/2000/svg", "rect");
-    rect2.setAttributeNS(null, "x", width * 22 / w);
-    rect2.setAttributeNS(null, "y", height * 128 /
-        h);
-    rect2.setAttributeNS(null, "width", width * 260 /
-        w);
-    rect2.setAttributeNS(null, "height", height * 57 /
-        h);
-    rect2.setAttributeNS(null, "rx", width * 13.11 / w);
-    rect2.setAttributeNS(null, "ry", height * 13.11 / h);
-    rect2.setAttributeNS(null, "fill", "#cccccc");
-
-    //<rect x="42" y="18" width="80" height="60" rx="9" ry="9" fill="#bb0b0b" stroke="#f45a2f" stroke-width="4" pointer-events="none"/>
-    var rect3 = document.createElementNS(
-        "http://www.w3.org/2000/svg", "rect");
-    rect3.setAttributeNS(null, "x", width * 42 / w);
-    rect3.setAttributeNS(null, "y", width * 18 / h);
-    rect3.setAttributeNS(null, "width", width * 80 /
-        w);
-    rect3.setAttributeNS(null, "height", height * 60 /
-        h);
-    rect3.setAttributeNS(null, "rx", width * 9 / w);
-    rect3.setAttributeNS(null, "ry", height * 9 / h);
-    rect3.setAttributeNS(null, "fill", "#bb0b0b");
-    rect3.setAttributeNS(null, "stroke", "#f45a2f");
-    rect3.setAttributeNS(null, "stroke-width", width *
-        4 / w);
-
-    //<rect x="182" y="18" width="80" height="60" rx="9" ry="9" fill="#bb0b0b" stroke="#f45a2f" stroke-width="4" pointer-events="none"/>
-    var rect4 = document.createElementNS(
-        "http://www.w3.org/2000/svg", "rect");
-    rect4.setAttributeNS(null, "x", width * 182 / w);
-    rect4.setAttributeNS(null, "y", height * 18 / h);
-    rect4.setAttributeNS(null, "width", width * 80 /
-        w);
-    rect4.setAttributeNS(null, "height", height * 60 /
-        h);
-    rect4.setAttributeNS(null, "rx", width * 9 / w);
-    rect4.setAttributeNS(null, "ry", height * 9 / h);
-    rect4.setAttributeNS(null, "fill", "#bb0b0b");
-    rect4.setAttributeNS(null, "stroke", "#f45a2f");
-    rect4.setAttributeNS(null, "stroke-width", width *
-        4 / w);
-
-    //<rect x="2" y="48" width="300" height="410" rx="27" ry="27" fill="#bb0b0b" stroke="#f45a2f" stroke-width="4" pointer-events="none"/>
-    var rect5 = document.createElementNS(
-        "http://www.w3.org/2000/svg", "rect");
-    rect5.setAttributeNS(null, "x", width * 2 / w);
-    rect5.setAttributeNS(null, "y", height * 48 / h);
-    rect5.setAttributeNS(null, "width", width * 300 /
-        w);
-    rect5.setAttributeNS(null, "height", height * 410 /
-        h);
-    rect5.setAttributeNS(null, "rx", width * 27 / w);
-    rect5.setAttributeNS(null, "ry", height * 27 / h);
-    rect5.setAttributeNS(null, "fill", "#bb0b0b");
-    rect5.setAttributeNS(null, "stroke", "#f45a2f");
-    rect5.setAttributeNS(null, "stroke-width", width *
-        4 / w);
-
-    //<rect x="44" y="44" width="76" height="21" fill="#bb0b0b" stroke="none" pointer-events="none"/>
-    var rect6 = document.createElementNS(
-        "http://www.w3.org/2000/svg", "rect");
-    rect6.setAttributeNS(null, "x", width * 44 / w);
-    rect6.setAttributeNS(null, "y", height * 44 / h);
-    rect6.setAttributeNS(null, "width", width * 76 /
-        w);
-    rect6.setAttributeNS(null, "height", height * 21 /
-        h);
-    rect6.setAttributeNS(null, "fill", "#bb0b0b");
-
-    //<rect x="184" y="40" width="76" height="21" fill="#bb0b0b" stroke="none" pointer-events="none"/>
-    var rect7 = document.createElementNS(
-        "http://www.w3.org/2000/svg", "rect");
-    rect7.setAttributeNS(null, "x", width * 184 / w);
-    rect7.setAttributeNS(null, "y", height * 40 / h);
-    rect7.setAttributeNS(null, "width", width * 76 /
-        w);
-    rect7.setAttributeNS(null, "height", height * 21 /
-        h);
-    rect7.setAttributeNS(null, "fill", "#bb0b0b");
-    //xlink:href="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/add-128.png" preserveAspectRatio="none" pointer-events="none"/>
-    var imgP = document.createElementNS("http://www.w3.org/2000/svg","image");
-    // imgP.setAttributeNS(null, "x", width * 2 / w);
-    // imgP.setAttributeNS(null, "y", height * 48 / h););
-    imgP.setAttributeNS(null,"href","https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/add-128.png");
-    imgP.setAttributeNS(null, "x", width * 68 / w);
-    imgP.setAttributeNS(null, "y", width * 28 / h);
-    imgP.setAttributeNS(null, "width", width * 30 / w);
-    imgP.setAttributeNS(null, "height", height * 30 / h);
-
-    var imgM = document.createElementNS("http://www.w3.org/2000/svg","image");
-    imgM.setAttributeNS(null,"href","https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-minus-round-128.png")
-    imgM.setAttributeNS(null, "x", width * 208 / w);
-    imgM.setAttributeNS(null, "y", height * 25 / h);
-    imgM.setAttributeNS(null, "width", width * 30 /w);
-    imgM.setAttributeNS(null, "height", height * 30 /h);
-
-
-    g.append(rect1);
-    g.append(rect2);
-    g.append(rect3);
-    g.append(rect4);
-    g.append(rect5);
-    g.append(rect6);
-    g.append(rect7);
-    g.append(imgM);
-    g.append(imgP);
-    return g;
-}
 createLevel = function() {
-    var w = 304,
-        h = 464;
+    var y = 137.5,
+        x = 190.5,
+        width = 279,
+        height = 339;
     var data = self.ctx.$scope.datasourceData[0] ? self
         .ctx.$scope.datasourceData[0] : [];
-    var width = self.ctx.width * w / h;
-    var height = self.ctx.height;
     var ySOH = d3.scaleLinear()
-        .range([(height * 410 /
-            h) - (height * 16 / h), 0])
+        .range([height, 0])
         .domain([0, 100])
         .nice();
     var ySOC = d3.scaleLinear()
@@ -173,20 +36,9 @@ createLevel = function() {
         .domain([0, 100])
         .nice();
     var chart = d3.select("#chart")
-        .attr("y", 0)
+        .attr("y", y)
         .attr("width", width)
         .attr("height", height);
-    d3.select("#chart").append("rect")
-        .attr("id", "empty")
-        .attr("x", (width * 8 / w) + width * 2 / w)
-        .attr("y", (height * 8 / h) + height * 48 / h)
-        .attr("width", (width * 300 /
-            w) - (width * 16 / w))
-        .attr("height", (height * 410 /
-            h) - (height * 16 / h))
-        .attr("rx", width * 25 / w)
-        .attr("ry", height * 25 / h)
-        .attr("fill", "grey");
     var bar = chart.selectAll("g")
         .data(data)
         .enter()
@@ -194,46 +46,41 @@ createLevel = function() {
         .attr("height", height);
     bar.append("rect")
         .attr("class", "cell")
-        .attr("x", (width * 8 / w) + width * 2 / w)
-        .attr("y", (d, i) => i == 0 ? ((height * 8 / h) +
-                height * 48 / h) +
-            ySOH(data[i]) : ((height * 8 / h) + height *
-                48 / h) +
+        .attr("x", x)
+        .attr("y", (d, i) => i == 0 ? y +
+            ySOH(data[i]) : y +
             ySOH(data[i - 1]) + ySOC(data[i]))
-        .attr("width", (width * 300 /
-            w) - (width * 16 / w))
+        .attr("width", width)
         .attr("height", (d, i) => i == 0 ? ySOH(100 -
             data[i]) : ySOC(100 - data[i]))
-        .attr("rx", width * 25 / w)
-        .attr("ry", height * 25 / h)
+        .attr("rx", 5)
+        .attr("ry", 5)
         .attr("fill", (d, i) => i == 0 ? "green" :
             "yellow");
     bar.append("text")
         .attr("class", "cellValue")
-        .attr("x", width / 2)
-        .attr("y", (d, i) => i == 0 ? (8 + height * 48 /
-                h) + ySOH(data[i]) : ((height * 8 / h) +
-                height * 48 / h) +
+        .attr("x", x + width / 2)
+        .attr("y", (d, i) => i == 0 ? y + ySOH(data[i]) +
+            5 :
             ySOH(data[i - 1]) + ySOC(data[i]) + ySOC(
                 100 -
                 data[i]) / 2)
         .attr("dy", ".75em")
         .attr("fill", "black")
         .attr("font-weight", "bolder")
-        .attr("font-size", width * 25 / w)
+        .attr("font-size", 25)
         .text((d, i) => i == 0 ? `S.O.H ${data[i]}%` :
             `S.O.C ${data[i]}%`);
 }
 updateLevel = function() {
-    var w = 304,
-        h = 464;
-    var width = self.ctx.width * w / h;
-    var height = self.ctx.height;
-    var data = self
-        .ctx.$scope.datasourceData[0];
+    var y = 137.5,
+        x = 190.5,
+        width = 279,
+        height = 339;
+    var data = self.ctx.$scope.datasourceData[0] ? self
+        .ctx.$scope.datasourceData[0] : [];
     var ySOH = d3.scaleLinear()
-        .range([(height * 410 /
-            h) - (height * 16 / h), 0])
+        .range([height, 0])
         .domain([0, 100])
         .nice();
     var ySOC = d3.scaleLinear()
@@ -251,10 +98,8 @@ updateLevel = function() {
         .data(data)
         .transition()
         .duration(900)
-        .attr("y", (d, i) => i == 0 ? ((height * 8 / h) +
-                height * 48 / h) +
-            ySOH(data[i]) : ((height * 8 / h) + height *
-                48 / h) +
+        .attr("y", (d, i) => i == 0 ? y +
+            ySOH(data[i]) : y +
             ySOH(data[i - 1]) + ySOC(data[i]))
         .attr("height", (d, i) => i == 0 ? ySOH(100 -
             data[i]) : ySOC(100 - data[i]))
@@ -262,9 +107,9 @@ updateLevel = function() {
         .data(data)
         .transition()
         .duration(900)
-        .attr("y", (d, i) => i == 0 ? (8 + height * 48 /
-                h) + ySOH(data[i]) : ((height * 8 / h) +
-                height * 48 / h) +
+        .attr("y", (d, i) => i == 0 ? y + ySOH(data[i]) +
+            5 :
+            y +
             ySOH(data[i - 1]) + ySOC(data[i]) + ySOC(
                 100 -
                 data[i]) / 2)
@@ -272,23 +117,59 @@ updateLevel = function() {
             `S.O.C ${data[i]}%`);
 }
 createView = function() {
-    var width = self.ctx.width * 304 / 464;
-    var height = self.ctx.height;
-    var svg = document.createElementNS(
-        "http://www.w3.org/2000/svg", "svg");
-    svg.setAttributeNS(null, "width", width);
-    svg.setAttributeNS(null, "height", height);
-    svg.setAttributeNS(null, "style",
-        "background-color: rgb(255, 255, 255);display: block;margin: auto"
-    );
-    var g = createBackground(width, height);
-    var container = document.createElementNS(
-        "http://www.w3.org/2000/svg", "svg");
-    container.setAttributeNS(null, "id", "chart");
-    g.append(container);
-    svg.append(g);
+    if (!self.background) {
+        self.background = document.getElementById(
+            "backgroundSVG");
+        document.getElementById("backgroundSVG").remove();
+    }
+    self.background.setAttributeNS(null, "width", self.ctx
+        .width);
+    self.background.setAttributeNS(null, "height", self
+        .ctx.height)
     document.getElementById("BatteryStateControl").append(
-        svg);
+        self.background);
+    document.getElementById("switcherCharge").addEventListener(
+        "click", () => {
+            console.log("Click switcherCharge");
+            if (self.switchCharge) {
+                document.getElementById(
+                    "switchCharge").setAttribute(
+                    "style",
+                    "transform:scale(0,-1)");
+            } else {
+                document.getElementById(
+                    "switchCharge").setAttribute(
+                    "style",
+                    "transform:scale(1, 1)");
+            }
+            self.switchCharge = !self.switchCharge;
+        });
+    document.getElementById("switcherDischarge").addEventListener(
+        "click", () => {
+            console.log("Click switcherDischarge");
+            if (self.switchDischarge) {
+                document.getElementById(
+                    "switchDischarge").setAttribute(
+                    "style",
+                    "transform:scale(0,-1)");
+            } else {
+                document.getElementById(
+                    "switchDischarge").setAttribute(
+                    "style",
+                    "transform:scale(1, 1)");
+            }
+            self.switchDischarge = !self.switchDischarge;
+        });
+        document.getElementById("locker").addEventListener(
+        "click", () => {
+            console.log("Click Lock");
+            if (self.locked) {
+                    d3.select("#locker").selectAll("path").attr("fill","red");
+            } else {
+                    d3.select("#locker").selectAll("path").attr("fill","green");
+            }
+            self.locked = !self.locked;
+        });
 }
 updateData = function() {
     self.ctx.$scope.datasources = self.ctx.defaultSubscription
